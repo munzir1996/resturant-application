@@ -52,3 +52,8 @@ class Client extends Authenticatable
     public const NO = 'no';
 
 }
+
+
+
+
+
