@@ -23,3 +23,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResource('languages', LanguageController::class);
 Route::apiResource('policies', PolicyController::class);
 
+//phone
+Route::prefix('/client')->middleware(['auth:sanctum', 'type.client'])->group(function () {
+});
