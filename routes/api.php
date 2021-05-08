@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\LanguageController;
+use App\Http\Controllers\API\PolicyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('languages', LanguageController::class);
+Route::apiResource('policies', PolicyController::class);
 
