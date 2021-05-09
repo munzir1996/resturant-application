@@ -2,7 +2,9 @@
 
 namespace Tests;
 
+use App\Models\Client;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Laravel\Sanctum\Sanctum;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -14,4 +16,18 @@ abstract class TestCase extends BaseTestCase
 
         $this->withoutExceptionHandling();
     }
+
+    protected function clientApiLogin($client = null)
+    {
+        $client = $client ? $client : Client::factory()->create();
+
+        Sanctum::actingAs(
+            $client,
+            ['role:client']
+        );
+
+        return $client;
+    }
+
 }
+

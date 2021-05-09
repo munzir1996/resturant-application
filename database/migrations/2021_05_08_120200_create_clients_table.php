@@ -27,6 +27,7 @@ class CreateClientsTable extends Migration
             $table->string('verification_code')->unique()->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

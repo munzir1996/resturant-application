@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\API\Auth;
 
+use App\Models\Client;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -11,25 +12,30 @@ class ClientAuthTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function can_register_a_client()
+    public function client_can_register_a_client()
     {
+        $this->withoutExceptionHandling();
         $response = $this->post('api/client/register', [
-            'name' => 'jane doe',
-            'email' => 'user@user.com',
-            'phone' => '0114949905',
+            'name' => 'name',
+            'email' => 'client@client.com',
+            'phone' => '0114949901',
+            'country' => 'sudan',
+            'job' => Client::RESTAURANT_OWNER,
+            'identity_no' => '114240491',
             'password' => 'password',
             'password_confirmation' => 'password',
         ]);
 
         $response->assertCreated();
-
-        $this->assertDatabaseHas('users', [
-            'name' => 'jane doe',
-            'email' => 'user@user.com',
-            'phone' => '0114949905',
+        $this->assertDatabaseHas('clients', [
+            'name' => 'name',
+            'email' => 'client@client.com',
+            'phone' => '0114949901',
+            'country' => 'sudan',
+            'job' => Client::RESTAURANT_OWNER,
+            'identity_no' => '114240491',
         ]);
 
-        $response->assertStatus(201);
     }
 
     /** @test */
@@ -37,63 +43,67 @@ class ClientAuthTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $user = User::factory()->create([
+        $client = Client::factory()->verified()->create([
             'name' => 'test',
             'email' => 'test@test.com',
             'phone' => '0123456789',
         ]);
 
-        $this->userApiLogin($user);
+        $this->clientApiLogin($client);
 
-        $response = $this->put('api/profile', [
-            'id' => $user->id,
+        $response = $this->put('api/client/profile', [
+            'id' => $client->id,
             'name' => 'jane doe',
             'email' => 'test@test.com',
             'phone' => '0123456789',
+            'country' => 'sudan',
+            'job' => Client::RESTAURANT_OWNER,
+            'identity_no' => '114240491',
         ]);
 
         $response->assertOk();
-
-        $this->assertDatabaseHas('users', [
+        $this->assertDatabaseHas('clients', [
             'name' => 'jane doe',
             'email' => 'test@test.com',
             'phone' => '0123456789',
+            'country' => 'sudan',
+            'job' => Client::RESTAURANT_OWNER,
+            'identity_no' => '114240491',
         ]);
-
-        $response->assertStatus(200);
     }
 
     /** @test */
-    public function user_can_login()
+    public function client_can_login()
     {
         $this->withoutExceptionHandling();
 
-        $user = User::factory()->create([
-            'email' => 'user@user.com',
+        $client = Client::factory()->create([
+            'email' => 'client@client.com',
         ]);
 
-        $this->userApiLogin($user);
+        $this->clientApiLogin($client);
 
-        $response = $this->post('api/login', [
-            'identity' => 'user@user.com',
+        $response = $this->post('api/client/login', [
+            'identity' => 'client@client.com',
             'password' => 'password',
         ]);
-
         $response->assertOk();
+
     }
 
     /** @test */
-    public function user_can_logout_and_delete_his_token()
+    public function client_can_logout_and_delete_his_token()
     {
         $this->withoutExceptionHandling();
 
-        $user = $this->userApiLogin();
+        $client = $this->clientApiLogin();
 
-        $user->createToken('user-application');
+        $client->createToken('mobile-client');
 
-        $response = $this->post('/api/logout');
+        $response = $this->post('/api/client/logout');
 
-        $response->assertStatus(200);
-        $this->assertCount(0, $user->tokens);
+        $response->assertOk();
+        $this->assertCount(0, $client->tokens);
     }
+
 }

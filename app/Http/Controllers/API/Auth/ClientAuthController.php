@@ -51,22 +51,36 @@ class ClientAuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
+            'identity' => 'required',
             'password' => 'required',
         ]);
 
-        $client = Client::where('email', $request->email)->first();
+        $field = filter_var($request->identity, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
 
-        if (!$client || !Hash::check($request->password, $client->password)) {
+        $client = Client::where("{$field}", $request->identity)->first();
+
+        if (!$client || ! Hash::check($request->password, $client->password)) {
             throw ValidationException::withMessages([
-                'email' => ['البيانات المدخلة غير صحيحة.'],
+                'identity' => ['بيانات الاعتماد المقدمة غير صحيحة.'],
             ]);
         }
 
         return response()->json([
-            'client' => $client,
-            'token' => $client->createToken('mobile-client', ['role:client'])->plainTextToken
-        ]);
-
+            'client' => $client->only(['id', 'name', 'email', 'phone']),
+            'token' => $client->createToken('mobile-client', ['role:client'])->plainTextToken,
+        ], Response::HTTP_OK);
     }
+
+    public function logout()
+    {
+        auth()->user()->tokens()->delete();
+
+        return response()->json('Client Logged out', Response::HTTP_OK);
+    }
+
 }
+
+
+
+
+
