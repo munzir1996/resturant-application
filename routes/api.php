@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\Auth\ClientAuthController;
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\CLient\ResturantController;
 use App\Http\Controllers\API\LanguageController;
 use App\Http\Controllers\API\PolicyController;
 use App\Http\Controllers\API\SubcategoryController;
@@ -37,6 +38,7 @@ Route::prefix('/client')->group(function () {
 Route::prefix('/client')->middleware(['auth:sanctum', 'type.client'])->group(function () {
     Route::put('profile', [ClientAuthController::class, 'updateProfile'])->name('client.profile.update');
     Route::post('logout', [ClientAuthController::class, 'logout'])->name('client.logout');
+    Route::apiResource('resturants', ResturantController::class);
 });
 
 

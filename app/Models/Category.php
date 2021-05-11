@@ -22,4 +22,15 @@ class Category extends Model
     {
         return $this->hasMany(Subcategory::class);
     }
+
+    /**
+     * Get all of the resturants for the Client
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function resturants()
+    {
+        return $this->hasMany(Resturant::class);
+    }
+
 }
