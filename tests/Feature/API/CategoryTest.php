@@ -24,6 +24,7 @@ class CategoryTest extends TestCase
                 '*' => [
                     'id',
                     'name',
+                    'subcategories'
                 ]
             ]
         ]);
@@ -42,11 +43,13 @@ class CategoryTest extends TestCase
             'data' => [
                 'id',
                 'name',
+                'subcategories'
             ]
         ]);
 
     }
 
 }
+
 
 
