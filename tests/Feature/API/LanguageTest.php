@@ -24,8 +24,6 @@ class LanguageTest extends TestCase
                 '*' => [
                     'id',
                     'name',
-                    'key',
-                    'code',
                 ]
             ]
         ]);
@@ -45,8 +43,6 @@ class LanguageTest extends TestCase
             'data' => [
                 'id',
                 'name',
-                'key',
-                'code',
             ]
         ]);
 

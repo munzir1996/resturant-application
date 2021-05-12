@@ -23,8 +23,8 @@ class LanguageFactory extends Factory
     {
         return [
             'name' => $this->faker->country,
-            'key' => $this->faker->areaCode,
-            'code' => $this->faker->countryCode,
+            // 'key' => $this->faker->areaCode,
+            // 'code' => $this->faker->countryCode,
         ];
     }
 }

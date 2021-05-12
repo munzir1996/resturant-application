@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\API\CLient;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ResturantCollection;
-use App\Http\Resources\ResturantResource;
+use App\Http\Resources\Client\ResturantCollection;
+use App\Http\Resources\Client\ResturantResource;
 use App\Models\Resturant;
 use Illuminate\Http\Request;
 
