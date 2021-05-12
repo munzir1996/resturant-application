@@ -120,6 +120,8 @@ class ResturantController extends Controller
      */
     public function destroy(Resturant $resturant)
     {
-        //
+        $resturant->delete();
+
+        return response()->json('Resturant Deleted', Response::HTTP_OK);
     }
 }

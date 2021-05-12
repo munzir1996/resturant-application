@@ -124,7 +124,7 @@ class ResturantTest extends TestCase
     }
 
     /** @test */
-    public function client_can_update_a_resturant()
+    public function client_can_edit_a_resturant()
     {
 
         $this->clientApiLogin();
@@ -176,6 +176,21 @@ class ResturantTest extends TestCase
             'iban' => 14240,
         ]);
 
+    }
+
+    /** @test */
+    public function client_can_delete_a_resturant()
+    {
+        $this->clientApiLogin();
+
+        $resturant = Resturant::factory()->create();
+
+        $response = $this->delete('api/client/resturants/'. $resturant->id);
+
+        $response->assertOk();
+        $this->assertSoftDeleted('resturants', [
+            'id' => $resturant->id,
+        ]);
     }
 
 }
