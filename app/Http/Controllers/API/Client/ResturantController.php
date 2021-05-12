@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\CLient;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\Client\ResturantStoreRequest;
+use App\Http\Requests\API\Client\ResturantUpdateRequest;
 use App\Http\Resources\Client\ResturantCollection;
 use App\Http\Resources\Client\ResturantResource;
 use App\Models\Resturant;
@@ -80,9 +81,35 @@ class ResturantController extends Controller
      * @param  \App\Models\Resturant  $resturant
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Resturant $resturant)
+    public function update(ResturantUpdateRequest $request, Resturant $resturant)
     {
-        //
+        $data = $request->validated();
+
+        $resturant->update([
+            'name_ar' => $data['name_ar'],
+            'name_en' => $data['name_en'],
+            'commercial_registration_no' => $data['commercial_registration_no'],
+            'open_time' => $data['open_time'],
+            'close_time' => $data['close_time'],
+            'delivery' => $data['delivery'],
+            'category_id' => $data['category_id'],
+            'client_id' => Auth::user()->id,
+        ]);
+
+        $resturant->resturantLocation()->update([
+            'latitude' => $data['latitude'],
+            'longetitue' => $data['longetitue'],
+            'country_id' => $data['country_id'],
+            'city_id' => $data['city_id'],
+        ]);
+
+        $resturant->banks()->update([
+            'name' => $data['bank_name'],
+            'iban' => $data['iban'],
+        ]);
+
+        return response()->json('Resturant Created', Response::HTTP_OK);
+
     }
 
     /**

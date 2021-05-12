@@ -23,8 +23,8 @@ class BankFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->bank,
-            'iban' => $this->faker->iban(null),
+            'name' => $this->faker->name,
+            'iban' => $this->faker->iban('SA'),
             'resturant_id' => Resturant::factory()->create()->id,
         ];
     }
