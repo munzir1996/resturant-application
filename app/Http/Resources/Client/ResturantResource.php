@@ -27,7 +27,10 @@ class ResturantResource extends JsonResource
             'close_time' => $this->close_time,
             'delivery' => $this->delivery,
             'client' => $this->whenLoaded('client'),
+
             'category' => new CategoryResource($this->whenLoaded('category')),
+            'resturant_location' => $this->whenLoaded('resturantLocation'),
+            'banks' => $this->whenLoaded('banks'),
         ];
     }
 }

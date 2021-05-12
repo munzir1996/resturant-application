@@ -38,13 +38,19 @@ class ResturantStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email' => 'required|email|unique:clients',
-            'phone' => 'required|min:10|unique:clients',
-            'country' => 'required',
-            'job' => 'required',
-            'identity_no' => 'required',
-            'password' => 'required|confirmed|min:8',
+            'name_ar' => 'required',
+            'name_en' => 'sometimes',
+            'commercial_registration_no' => 'required',
+            'open_time' => 'required',
+            'close_time' => 'required',
+            'delivery' => 'required',
+            'category_id' => 'required',
+            'latitude' => 'required',
+            'longetitue' => 'required',
+            'country_id' => 'required',
+            'city_id' => 'required',
+            'bank_name' => 'required',
+            'iban' => 'required',
         ];
     }
 
@@ -57,18 +63,18 @@ class ResturantStoreRequest extends FormRequest
     {
         return [
             'name.required' => 'الأسم مطلوب',
-            'email.required' => 'البريد الألكتروني مطلوب',
-            'email.unique' => 'البريد الألكتروني مستخدم بالفعل',
-            'email.email' => 'يجب ان يكون المدخل بريد ألكتروني',
-            'phone.required' => 'رقم الهاتف مطلوب',
-            'phone.min' => 'يجب أن يكون رقم الهاتف 10 ارقام',
-            'phone.unique' => 'رقم الهاتف مستخدم بالفعل',
-            'country.required' => 'البلاد مطلوبة',
-            'job.required' => 'الوظيفة مطلوبة',
-            'identity_no.required' => 'رقم الهوية مطلوب',
-            'password.required' => 'كلمة السر مطلوبة',
-            'password.min' => 'طول الحد الأدني هو 8',
-            'password.confirmed' => 'كلمة المرور لا تتطابق مع تأكيد كلمة المرور',
+            'name_ar.required' => 'أسم المطعم مطلوب',
+            'commercial_registration_no.required' => 'رقم السجل التجاري مطلوب',
+            'open_time.required' => 'زمن الأفتتاح مطلوب',
+            'close_time.required' => 'زمن الأغلاق مطلوب',
+            'delivery.required' => 'أختيار التوصيل مطلوب',
+            'category_id.required' => 'التصنيف مطلوب',
+            'latitude.required' => 'خط الطول مطلوب',
+            'longetitue.required' => 'خط العرض مطلوب',
+            'country_id.required' => 'الدولة مطلوبة',
+            'city_id.required' => 'المدينة مطلوبة',
+            'bank_name.required' => 'أسم البنك مطلوب',
+            'iban.required' => 'رقم الأيبان مطلوب',
         ];
     }
 

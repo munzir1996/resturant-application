@@ -11,7 +11,7 @@ class Resturant extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = [];
-    protected $with = ['client', 'category'];
+    protected $with = ['client', 'category', 'resturantLocation', 'banks'];
 
     public const YES = 'yes';
     public const NO = 'no';
@@ -34,6 +34,26 @@ class Resturant extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Get the resturantLocation associated with the Resturant
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function resturantLocation()
+    {
+        return $this->hasOne(ResturantLocation::class);
+    }
+
+    /**
+     * Get all of the banks for the Resturant
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function banks()
+    {
+        return $this->hasMany(Bank::class);
     }
 
 }

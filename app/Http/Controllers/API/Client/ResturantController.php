@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\API\CLient;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\Client\ResturantStoreRequest;
 use App\Http\Resources\Client\ResturantCollection;
 use App\Http\Resources\Client\ResturantResource;
 use App\Models\Resturant;
+use App\Models\ResturantLocation;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class ResturantController extends Controller
 {
@@ -28,9 +32,34 @@ class ResturantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ResturantStoreRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $resturant = Resturant::create([
+            'name_ar' => $data['name_ar'],
+            'name_en' => $data['name_en'],
+            'commercial_registration_no' => $data['commercial_registration_no'],
+            'open_time' => $data['open_time'],
+            'close_time' => $data['close_time'],
+            'delivery' => $data['delivery'],
+            'category_id' => $data['category_id'],
+            'client_id' => Auth::user()->id,
+        ]);
+
+        $resturant->resturantLocation()->create([
+            'latitude' => $data['latitude'],
+            'longetitue' => $data['longetitue'],
+            'country_id' => $data['country_id'],
+            'city_id' => $data['city_id'],
+        ]);
+
+        $resturant->banks()->create([
+            'name' => $data['bank_name'],
+            'iban' => $data['iban'],
+        ]);
+
+        return response()->json('Resturant Created', Response::HTTP_CREATED);
     }
 
     /**

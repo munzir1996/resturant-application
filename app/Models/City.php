@@ -21,4 +21,19 @@ class City extends Model
     {
         return $this->belongsTo(Country::class);
     }
+
+    /**
+     * Get all of the resturantLocations for the City
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function resturantLocations()
+    {
+        return $this->hasMany(ResturantLocation::class);
+    }
 }
+
+
+
+
+
