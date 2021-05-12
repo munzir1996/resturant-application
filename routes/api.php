@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\Auth\ClientAuthController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\CLient\ResturantController;
+use App\Http\Controllers\API\CountryController;
 use App\Http\Controllers\API\LanguageController;
 use App\Http\Controllers\API\PolicyController;
 use App\Http\Controllers\API\SubcategoryController;
@@ -28,6 +29,7 @@ Route::apiResource('languages', LanguageController::class);
 Route::apiResource('policies', PolicyController::class);
 Route::apiResource('categories', CategoryController::class);
 Route::apiResource('subcategories', SubcategoryController::class);
+Route::apiResource('countries', CountryController::class);
 
 
 Route::prefix('/client')->group(function () {
