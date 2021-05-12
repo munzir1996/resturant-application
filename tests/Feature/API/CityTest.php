@@ -2,21 +2,21 @@
 
 namespace Tests\Feature\API;
 
-use App\Models\Country;
+use App\Models\City;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class CountryTest extends TestCase
+class CityTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
-    public function can_get_all_countries()
+    public function can_get_all_cities()
     {
+        City::factory()->create();
 
-        Country::factory()->create();
-        $response = $this->get('/api/countries');
+        $response = $this->get('/api/cities');
 
         $response->assertOk();
         $response->assertJsonStructure([
@@ -24,34 +24,31 @@ class CountryTest extends TestCase
                 '*' => [
                     'id',
                     'name',
-                    'code',
-                    'key',
-                    'cities'
+                    'country_id',
                 ]
             ]
         ]);
     }
 
     /** @test */
-    public function can_get_selected_country()
+    public function can_selected_city()
     {
+        $city = City::factory()->create();
 
-        $country = Country::factory()->create();
-        $response = $this->get('/api/countries/'. $country->id);
+        $response = $this->get('/api/cities/'. $city->id);
 
         $response->assertOk();
         $response->assertJsonStructure([
             'data' => [
                 'id',
                 'name',
-                'code',
-                'key',
-                'cities'
+                'country_id',
             ]
         ]);
     }
 
-
 }
+
+
 
 
