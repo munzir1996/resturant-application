@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Client;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CountryResource extends JsonResource
+class ResturantServiceResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,9 +17,13 @@ class CountryResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'code' => $this->code,
-            'key' => $this->key,
-            'cities' => $this->whenLoaded('cities'),
+            'resturant_id' => $this->resturant_id,
         ];
     }
 }
+
+
+
+
+
+

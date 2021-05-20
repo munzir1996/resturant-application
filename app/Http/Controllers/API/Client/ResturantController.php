@@ -8,8 +8,6 @@ use App\Http\Requests\API\Client\ResturantUpdateRequest;
 use App\Http\Resources\Client\ResturantCollection;
 use App\Http\Resources\Client\ResturantResource;
 use App\Models\Resturant;
-use App\Models\ResturantLocation;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 

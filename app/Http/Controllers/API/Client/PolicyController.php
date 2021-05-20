@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\CLient;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CountryCollection;
-use App\Http\Resources\CountryResource;
-use App\Models\Country;
+use App\Http\Resources\client\PolicyResource;
+use App\Models\Policy;
 use Illuminate\Http\Request;
 
-class CountryController extends Controller
+class PolicyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +16,9 @@ class CountryController extends Controller
      */
     public function index()
     {
-        $countries = Country::all();
+        $policy = Policy::first();
 
-        return new CountryCollection($countries);
+        return new PolicyResource($policy);
     }
 
     /**
@@ -36,22 +35,22 @@ class CountryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Country  $country
+     * @param  \App\Models\Policy  $policy
      * @return \Illuminate\Http\Response
      */
-    public function show(Country $country)
+    public function show(Policy $policy)
     {
-        return new CountryResource($country);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Country  $country
+     * @param  \App\Models\Policy  $policy
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Country $country)
+    public function update(Request $request, Policy $policy)
     {
         //
     }
@@ -59,10 +58,10 @@ class CountryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Country  $country
+     * @param  \App\Models\Policy  $policy
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Country $country)
+    public function destroy(Policy $policy)
     {
         //
     }

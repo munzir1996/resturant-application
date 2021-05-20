@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\CLient;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\SubcategoryCollection;
-use App\Http\Resources\SubcategoryResource;
-use App\Models\Subcategory;
+use App\Http\Resources\client\CountryCollection;
+use App\Http\Resources\client\CountryResource;
+use App\Models\Country;
 use Illuminate\Http\Request;
 
-class SubcategoryController extends Controller
+class CountryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +17,9 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-        $subcategories = Subcategory::all();
+        $countries = Country::all();
 
-        return new SubcategoryCollection($subcategories);
+        return new CountryCollection($countries);
     }
 
     /**
@@ -36,22 +36,22 @@ class SubcategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Subcategory  $subcategory
+     * @param  \App\Models\Country  $country
      * @return \Illuminate\Http\Response
      */
-    public function show(Subcategory $subcategory)
+    public function show(Country $country)
     {
-        return new SubcategoryResource($subcategory);
+        return new CountryResource($country);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Subcategory  $subcategory
+     * @param  \App\Models\Country  $country
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subcategory $subcategory)
+    public function update(Request $request, Country $country)
     {
         //
     }
@@ -59,10 +59,10 @@ class SubcategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Subcategory  $subcategory
+     * @param  \App\Models\Country  $country
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subcategory $subcategory)
+    public function destroy(Country $country)
     {
         //
     }

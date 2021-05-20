@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\API;
+namespace Tests\Feature\API\Client;
 
 use App\Models\Subcategory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -15,10 +15,11 @@ class SubcategoryTest extends TestCase
     public function can_get_all_subcategories()
     {
 
+        $this->clientApiLogin();
+
         Subcategory::factory(2)->create();
 
-        $response = $this->get('/api/subcategories');
-
+        $response = $this->get('/api/client/subcategories');
         $response->assertOk();
         $response->assertJsonStructure([
             'data' => [
@@ -34,9 +35,11 @@ class SubcategoryTest extends TestCase
     /** @test */
     public function can_get_selected_subcategory()
     {
-        $subcategory = Subcategory::factory()->create();
-        $response = $this->get('/api/subcategories/'. $subcategory->id);
+        $this->clientApiLogin();
 
+        $subcategory = Subcategory::factory()->create();
+
+        $response = $this->get('/api/client/subcategories/'. $subcategory->id);
         $response->assertOk();
         $response->assertJsonStructure([
             'data' => [

@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\CLient;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\PolicyResource;
-use App\Models\Policy;
+use App\Http\Resources\client\SubcategoryCollection;
+use App\Http\Resources\client\SubcategoryResource;
+use App\Models\Subcategory;
 use Illuminate\Http\Request;
 
-class PolicyController extends Controller
+class SubcategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +17,9 @@ class PolicyController extends Controller
      */
     public function index()
     {
-        $policy = Policy::first();
+        $subcategories = Subcategory::all();
 
-        return new PolicyResource($policy);
+        return new SubcategoryCollection($subcategories);
     }
 
     /**
@@ -35,22 +36,22 @@ class PolicyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Policy  $policy
+     * @param  \App\Models\Subcategory  $subcategory
      * @return \Illuminate\Http\Response
      */
-    public function show(Policy $policy)
+    public function show(Subcategory $subcategory)
     {
-        //
+        return new SubcategoryResource($subcategory);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Policy  $policy
+     * @param  \App\Models\Subcategory  $subcategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Policy $policy)
+    public function update(Request $request, Subcategory $subcategory)
     {
         //
     }
@@ -58,10 +59,10 @@ class PolicyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Policy  $policy
+     * @param  \App\Models\Subcategory  $subcategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Policy $policy)
+    public function destroy(Subcategory $subcategory)
     {
         //
     }

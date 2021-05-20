@@ -1,29 +1,31 @@
 <?php
-namespace Tests\Feature\API;
 
-use App\Models\Language;
+namespace Tests\Feature\API\Client;
+
+use App\Models\Category;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class LanguageTest extends TestCase
+class CategoryTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
-    public function can_get_all_languages()
+    public function can_get_all_categories()
     {
+        $this->clientApiLogin();
 
-        Language::factory(2)->create();
+        Category::factory(2)->create();
 
-        $response = $this->get('/api/languages');
-
+        $response = $this->get('/api/client/categories');
         $response->assertOk();
         $response->assertJsonStructure([
             'data' => [
                 '*' => [
                     'id',
                     'name',
+                    'subcategories'
                 ]
             ]
         ]);
@@ -31,25 +33,24 @@ class LanguageTest extends TestCase
     }
 
     /** @test */
-    public function can_get_selected_language()
+    public function can_get_selected_category()
     {
+        $this->clientApiLogin();
 
-        $language = Language::factory()->create();
+        $category = Category::factory()->create();
 
-        $response = $this->get('/api/languages/'. $language->id);
-
+        $response = $this->get('/api/client/categories/'. $category->id);
         $response->assertOk();
         $response->assertJsonStructure([
             'data' => [
                 'id',
                 'name',
+                'subcategories'
             ]
         ]);
 
     }
 
 }
-
-
 
 

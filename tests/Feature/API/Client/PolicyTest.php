@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\API;
+namespace Tests\Feature\API\Client;
 
 use App\Models\Policy;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -16,8 +16,7 @@ class PolicyTest extends TestCase
     {
         Policy::factory()->create();
 
-        $response = $this->get('/api/policies');
-
+        $response = $this->get('/api/client/policies');
         $response->assertOk();
         $response->assertJsonStructure([
             'data' => [

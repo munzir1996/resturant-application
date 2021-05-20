@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\CLient;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CityCollection;
-use App\Http\Resources\CityResource;
+use App\Http\Resources\client\CityCollection;
+use App\Http\Resources\client\CityResource;
 use App\Models\City;
 use Illuminate\Http\Request;
 

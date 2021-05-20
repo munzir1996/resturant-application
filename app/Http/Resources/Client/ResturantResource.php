@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources\Client;
 
-use App\Http\Resources\CategoryResource;
+use App\Http\Resources\Client\CategoryResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 use function PHPUnit\Framework\isEmpty;

@@ -20,13 +20,13 @@ class ResturantTest extends TestCase
     {
 
         $this->clientApiLogin();
+
         $resturant = Resturant::factory()->create();
         ResturantLocation::factory()->create([
             'resturant_id' => $resturant->id,
         ]);
 
         $response = $this->get('/api/client/resturants');
-
         $response->assertOk();
         $response->assertJsonStructure([
             'data' => [
@@ -51,13 +51,13 @@ class ResturantTest extends TestCase
     {
 
         $this->clientApiLogin();
+
         $resturant = Resturant::factory()->create();
         ResturantLocation::factory()->create([
             'resturant_id' => $resturant->id,
         ]);
 
         $response = $this->get('/api/client/resturants/'. $resturant->id);
-
         $response->assertOk();
         $response->assertJsonStructure([
             'data' => [
@@ -99,8 +99,8 @@ class ResturantTest extends TestCase
             'bank_name' => 'BOK',
             'iban' => 14240,
         ]);
-
         $response->assertCreated();
+
         $this->assertDatabaseHas('resturants', [
             'name_ar' => 'مطعم',
             'name_en' => 'resturant',
@@ -154,8 +154,8 @@ class ResturantTest extends TestCase
             'bank_name' => 'BOK',
             'iban' => 14240,
         ]);
-
         $response->assertOk();
+
         $this->assertDatabaseHas('resturants', [
             'name_ar' => 'مطعم',
             'name_en' => 'resturant',
@@ -186,8 +186,8 @@ class ResturantTest extends TestCase
         $resturant = Resturant::factory()->create();
 
         $response = $this->delete('api/client/resturants/'. $resturant->id);
-
         $response->assertOk();
+
         $this->assertSoftDeleted('resturants', [
             'id' => $resturant->id,
         ]);

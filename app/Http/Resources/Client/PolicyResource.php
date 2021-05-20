@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Client;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class LanguageResource extends JsonResource
+class PolicyResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,7 +16,8 @@ class LanguageResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'terms' => $this->terms,
+            'accept' => $this->accept,
         ];
     }
 }

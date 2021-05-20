@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Client;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SubcategoryResource extends JsonResource
+class CategoryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,7 +17,11 @@ class SubcategoryResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'category_id' => $this->category_id,
+
+            'subcategories' => $this->whenLoaded('subcategories'),
         ];
     }
 }
+
+
+

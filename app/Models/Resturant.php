@@ -56,6 +56,16 @@ class Resturant extends Model
         return $this->hasMany(Bank::class);
     }
 
+    /**
+     * Get all of the resturantServices for the Resturant
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function resturantServices()
+    {
+        return $this->hasMany(ResturantService::class);
+    }
+
 }
 
 

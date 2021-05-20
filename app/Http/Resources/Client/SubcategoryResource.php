@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Client;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PolicyResource extends JsonResource
+class SubcategoryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,8 +16,8 @@ class PolicyResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'terms' => $this->terms,
-            'accept' => $this->accept,
+            'name' => $this->name,
+            'category_id' => $this->category_id,
         ];
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Client;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class SubcategoryCollection extends ResourceCollection
+class CountryCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.

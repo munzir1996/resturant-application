@@ -1,55 +1,52 @@
 <?php
 
-namespace Tests\Feature\API;
+namespace Tests\Feature\API\Client;
 
-use App\Models\Category;
+use App\Models\City;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class CategoryTest extends TestCase
+class CityTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
-    public function can_get_all_categories()
+    public function can_get_all_cities()
     {
-        Category::factory(2)->create();
+        City::factory()->create();
 
-        $response = $this->get('/api/categories');
-
+        $response = $this->get('/api/client/cities');
         $response->assertOk();
         $response->assertJsonStructure([
             'data' => [
                 '*' => [
                     'id',
                     'name',
-                    'subcategories'
+                    'country_id',
                 ]
             ]
         ]);
-
     }
 
     /** @test */
-    public function can_get_selected_category()
+    public function can_selected_city()
     {
-        $category = Category::factory()->create();
+        $city = City::factory()->create();
 
-        $response = $this->get('/api/categories/'. $category->id);
-
+        $response = $this->get('/api/client/cities/'. $city->id);
         $response->assertOk();
         $response->assertJsonStructure([
             'data' => [
                 'id',
                 'name',
-                'subcategories'
+                'country_id',
             ]
         ]);
-
     }
 
 }
+
 
 
 

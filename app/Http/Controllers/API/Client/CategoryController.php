@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\CLient;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CategoryCollection;
-use App\Http\Resources\CategoryResource;
+use App\Http\Resources\client\CategoryCollection;
+use App\Http\Resources\client\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
 

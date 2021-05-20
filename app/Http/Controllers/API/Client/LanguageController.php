@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\CLient;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\LanguageCollection;
-use App\Http\Resources\LanguageResource;
+use App\Http\Resources\client\LanguageCollection;
+use App\Http\Resources\client\LanguageResource;
 use App\Models\Language;
 use Illuminate\Http\Request;
 
