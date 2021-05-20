@@ -2,24 +2,24 @@
 
 namespace Tests\Feature\API\Client;
 
+use App\Models\Classification;
 use App\Models\Resturant;
-use App\Models\ResturantService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ResturantServiceTest extends TestCase
+class ClassificationTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
-    public function client_can_get_all_resturant_services()
+    public function client_can_get_all_classifications_services()
     {
         $this->clientApiLogin();
 
-        ResturantService::factory()->create();
+        Classification::factory()->create();
 
-        $response = $this->get('/api/client/resturantservices');
+        $response = $this->get('/api/client/classifications');
         $response->assertOk();
         $response->assertJsonStructure([
             'data' => [
@@ -33,14 +33,14 @@ class ResturantServiceTest extends TestCase
     }
 
     /** @test */
-    public function client_can_get_selected_resturant_service()
+    public function client_can_get_selected_classification_service()
     {
 
         $this->clientApiLogin();
 
-        $resturantService = ResturantService::factory()->create();
+        $classification = Classification::factory()->create();
 
-        $response = $this->get('/api/client/resturantservices/'. $resturantService->id);
+        $response = $this->get('/api/client/classifications/'. $classification->id);
         $response->assertOk();
         $response->assertJsonStructure([
             'data' => [
@@ -57,37 +57,37 @@ class ResturantServiceTest extends TestCase
     {
         $this->clientApiLogin();
 
-        $resturant = Resturant::factory()->create();
+        $classification = Classification::factory()->create();
 
-        $response = $this->post('/api/client/resturantservices', [
+        $response = $this->post('/api/client/classifications', [
             'name' => 'service',
-            'resturant_id' => $resturant->id,
+            'resturant_id' => $classification->id,
         ]);
         $response->assertCreated();
 
-        $this->assertDatabaseHas('resturant_services', [
+        $this->assertDatabaseHas('classifications', [
             'name' => 'service',
-            'resturant_id' => $resturant->id,
+            'resturant_id' => $classification->id,
         ]);
 
     }
 
 
     /** @test */
-    public function client_can_update_resturant_service()
+    public function client_can_update_classification()
     {
         $this->clientApiLogin();
 
-        $resturantService = ResturantService::factory()->create();
+        $classification = Classification::factory()->create();
         $resturant = Resturant::factory()->create();
 
-        $response = $this->put('/api/client/resturantservices/'. $resturantService->id, [
+        $response = $this->put('/api/client/classifications/'. $classification->id, [
             'name' => 'update',
             'resturant_id' => $resturant->id,
         ]);
         $response->assertOk();
 
-        $this->assertDatabaseHas('resturant_services', [
+        $this->assertDatabaseHas('classifications', [
             'name' => 'update',
             'resturant_id' => $resturant->id,
         ]);
@@ -99,21 +99,16 @@ class ResturantServiceTest extends TestCase
     {
         $this->clientApiLogin();
 
-        $resturantService = ResturantService::factory()->create();
+        $classification = Classification::factory()->create();
         $resturant = Resturant::factory()->create();
 
-        $response = $this->delete('/api/client/resturantservices/'. $resturantService->id);
+        $response = $this->delete('/api/client/classifications/'. $classification->id);
         $response->assertOk();
 
-        $this->assertSoftDeleted('resturant_services', [
-            'id' => $resturantService->id,
+        $this->assertSoftDeleted('classifications', [
+            'id' => $classification->id,
         ]);
 
     }
 
 }
-
-
-
-
-

@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\Auth\ClientAuthController;
 use App\Http\Controllers\API\CLient\CategoryController;
 use App\Http\Controllers\API\CLient\CityController;
+use App\Http\Controllers\API\Client\ClassificationController;
 use App\Http\Controllers\API\CLient\CountryController;
 use App\Http\Controllers\API\CLient\LanguageController;
 use App\Http\Controllers\API\CLient\PolicyController;
@@ -35,6 +36,7 @@ Route::prefix('/client')->group(function () {
     Route::apiResource('cities', CityController::class);
     Route::apiResource('policies', PolicyController::class);
 });
+
 //phone
 Route::prefix('/client')->middleware(['auth:sanctum', 'type.client'])->group(function () {
     Route::put('profile', [ClientAuthController::class, 'updateProfile'])->name('client.profile.update');
@@ -43,6 +45,10 @@ Route::prefix('/client')->middleware(['auth:sanctum', 'type.client'])->group(fun
     Route::apiResource('resturants', ResturantController::class);
     Route::apiResource('categories', CategoryController::class);
     Route::apiResource('subcategories', SubcategoryController::class);
+    Route::apiResource('classifications', ClassificationController::class);
 });
+
+
+
 
 

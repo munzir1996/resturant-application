@@ -66,6 +66,16 @@ class Resturant extends Model
         return $this->hasMany(ResturantService::class);
     }
 
+    /**
+     * Get all of the classification for the Resturant
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function classification()
+    {
+        return $this->hasMany(Classification::class);
+    }
+
 }
 
 
