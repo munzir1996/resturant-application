@@ -16,7 +16,6 @@ class CreateResturantsTable extends Migration
         Schema::create('resturants', function (Blueprint $table) {
             $table->id();
             $table->string('name_ar');
-            $table->string('name_en')->nullable();
             $table->string('commercial_registration_no');
             $table->string('open_time');
             $table->string('close_time');

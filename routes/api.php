@@ -6,6 +6,7 @@ use App\Http\Controllers\API\CLient\CityController;
 use App\Http\Controllers\API\Client\ClassificationController;
 use App\Http\Controllers\API\CLient\CountryController;
 use App\Http\Controllers\API\CLient\LanguageController;
+use App\Http\Controllers\API\Client\MealController;
 use App\Http\Controllers\API\CLient\PolicyController;
 use App\Http\Controllers\API\CLient\ResturantController;
 use App\Http\Controllers\API\Client\ResturantServiceController;
@@ -31,7 +32,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::prefix('/client')->group(function () {
     Route::post('register', [ClientAuthController::class, 'register'])->name('client.register');
     Route::post('login', [ClientAuthController::class, 'login'])->name('client.login');
-    Route::apiResource('languages', LanguageController::class);
     Route::apiResource('countries', CountryController::class);
     Route::apiResource('cities', CityController::class);
     Route::apiResource('policies', PolicyController::class);
@@ -41,6 +41,7 @@ Route::prefix('/client')->group(function () {
 Route::prefix('/client')->middleware(['auth:sanctum', 'type.client'])->group(function () {
     Route::put('profile', [ClientAuthController::class, 'updateProfile'])->name('client.profile.update');
     Route::post('logout', [ClientAuthController::class, 'logout'])->name('client.logout');
+    Route::apiResource('meals', MealController::class);
     Route::apiResource('resturantservices', ResturantServiceController::class)->parameter('resturantservices', 'resturantService');
     Route::apiResource('resturants', ResturantController::class);
     Route::apiResource('categories', CategoryController::class);

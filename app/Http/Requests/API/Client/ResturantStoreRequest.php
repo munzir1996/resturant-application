@@ -39,7 +39,6 @@ class ResturantStoreRequest extends FormRequest
     {
         return [
             'name_ar' => 'required',
-            'name_en' => 'sometimes',
             'commercial_registration_no' => 'required',
             'open_time' => 'required',
             'close_time' => 'required',

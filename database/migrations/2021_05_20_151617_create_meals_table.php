@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLanguagesTable extends Migration
+class CreateMealsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,19 @@ class CreateLanguagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('languages', function (Blueprint $table) {
+        Schema::create('meals', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->foreignId('classification_id');
+            $table->double('price');
+            $table->text('detail');
+            $table->double('calorie');
+            $table->string('size');
+            $table->text('additions');
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('classification_id')->references('id')->on('classifications')->onDelete('cascade');
         });
     }
 
@@ -28,6 +36,6 @@ class CreateLanguagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('languages');
+        Schema::dropIfExists('meals');
     }
 }

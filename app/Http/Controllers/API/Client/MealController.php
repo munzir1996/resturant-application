@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\API\CLient;
+namespace App\Http\Controllers\API\Client;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\client\LanguageCollection;
-use App\Http\Resources\client\LanguageResource;
-use App\Models\Language;
+use App\Http\Resources\Client\MealCollection;
+use App\Http\Resources\Client\MealResource;
+use App\Models\Meal;
 use Illuminate\Http\Request;
 
-class LanguageController extends Controller
+class MealController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +17,9 @@ class LanguageController extends Controller
      */
     public function index()
     {
-        $languages = Language::all();
+        $meals = Meal::all();
 
-        return new LanguageCollection($languages);
+        return new MealCollection($meals);
     }
 
     /**
@@ -36,22 +36,22 @@ class LanguageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Language  $language
+     * @param  \App\Models\Meal  $meal
      * @return \Illuminate\Http\Response
      */
-    public function show(Language $language)
+    public function show(Meal $meal)
     {
-        return new LanguageResource($language);
+        return new MealResource($meal);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Language  $language
+     * @param  \App\Models\Meal  $meal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Language $language)
+    public function update(Request $request, Meal $meal)
     {
         //
     }
@@ -59,10 +59,10 @@ class LanguageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Language  $language
+     * @param  \App\Models\Meal  $meal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Language $language)
+    public function destroy(Meal $meal)
     {
         //
     }

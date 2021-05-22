@@ -23,4 +23,14 @@ class Classification extends Model
         return $this->belongsTo(Resturant::class);
     }
 
+    /**
+     * Get all of the meals for the Classification
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function meals()
+    {
+        return $this->hasMany(Meal::class);
+    }
+
 }

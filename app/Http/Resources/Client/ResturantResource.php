@@ -21,7 +21,6 @@ class ResturantResource extends JsonResource
         return [
             'id' => $this->id,
             'name_ar' => $this->name_ar,
-            'name_en' => $this->when(isset($this->name_en), $this->name_en),
             'commercial_registration_no' => $this->commercial_registration_no,
             'open_time' => $this->open_time,
             'close_time' => $this->close_time,
@@ -34,3 +33,7 @@ class ResturantResource extends JsonResource
         ];
     }
 }
+
+
+
+
