@@ -86,7 +86,6 @@ class ResturantTest extends TestCase
 
         $response = $this->post('api/client/resturants', [
             'name_ar' => 'مطعم',
-            'name_en' => 'resturant',
             'commercial_registration_no' => '011',
             'open_time' => '8am',
             'close_time' => '10pm',
@@ -103,7 +102,6 @@ class ResturantTest extends TestCase
 
         $this->assertDatabaseHas('resturants', [
             'name_ar' => 'مطعم',
-            'name_en' => 'resturant',
             'commercial_registration_no' => '011',
             'open_time' => '8am',
             'close_time' => '10pm',
@@ -141,7 +139,6 @@ class ResturantTest extends TestCase
 
         $response = $this->put('api/client/resturants/'. $resturant->id, [
             'name_ar' => 'مطعم',
-            'name_en' => 'resturant',
             'commercial_registration_no' => '011',
             'open_time' => '8am',
             'close_time' => '10pm',
@@ -158,7 +155,6 @@ class ResturantTest extends TestCase
 
         $this->assertDatabaseHas('resturants', [
             'name_ar' => 'مطعم',
-            'name_en' => 'resturant',
             'commercial_registration_no' => '011',
             'open_time' => '8am',
             'close_time' => '10pm',

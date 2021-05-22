@@ -37,7 +37,6 @@ class ResturantController extends Controller
 
         $resturant = Resturant::create([
             'name_ar' => $data['name_ar'],
-            'name_en' => $data['name_en'],
             'commercial_registration_no' => $data['commercial_registration_no'],
             'open_time' => $data['open_time'],
             'close_time' => $data['close_time'],
@@ -85,7 +84,6 @@ class ResturantController extends Controller
 
         $resturant->update([
             'name_ar' => $data['name_ar'],
-            'name_en' => $data['name_en'],
             'commercial_registration_no' => $data['commercial_registration_no'],
             'open_time' => $data['open_time'],
             'close_time' => $data['close_time'],
