@@ -33,6 +33,10 @@ class ResturantTest extends TestCase
                 '*' => [
                     'id',
                     'name_ar',
+                    'name_en',
+                    'manager_name',
+                    'manager_phone',
+                    'email',
                     'commercial_registration_no',
                     'open_time',
                     'close_time',
@@ -63,6 +67,10 @@ class ResturantTest extends TestCase
             'data' => [
                 'id',
                 'name_ar',
+                'name_en',
+                'manager_name',
+                'manager_phone',
+                'email',
                 'commercial_registration_no',
                 'open_time',
                 'close_time',
@@ -86,6 +94,10 @@ class ResturantTest extends TestCase
 
         $response = $this->post('api/client/resturants', [
             'name_ar' => 'مطعم',
+            'name_en' => 'resturant',
+            'manager_name' => 'مدير',
+            'manager_phone' => '01542365874',
+            'email' => 'client@client.com',
             'commercial_registration_no' => '011',
             'open_time' => '8am',
             'close_time' => '10pm',
@@ -102,6 +114,10 @@ class ResturantTest extends TestCase
 
         $this->assertDatabaseHas('resturants', [
             'name_ar' => 'مطعم',
+            'name_en' => 'resturant',
+            'manager_name' => 'مدير',
+            'manager_phone' => '01542365874',
+            'email' => 'client@client.com',
             'commercial_registration_no' => '011',
             'open_time' => '8am',
             'close_time' => '10pm',
@@ -139,6 +155,10 @@ class ResturantTest extends TestCase
 
         $response = $this->put('api/client/resturants/'. $resturant->id, [
             'name_ar' => 'مطعم',
+            'name_en' => 'resturant',
+            'manager_name' => 'مدير',
+            'manager_phone' => '01542365874',
+            'email' => 'client@client.com',
             'commercial_registration_no' => '011',
             'open_time' => '8am',
             'close_time' => '10pm',
@@ -155,6 +175,10 @@ class ResturantTest extends TestCase
 
         $this->assertDatabaseHas('resturants', [
             'name_ar' => 'مطعم',
+            'name_en' => 'resturant',
+            'manager_name' => 'مدير',
+            'manager_phone' => '01542365874',
+            'email' => 'client@client.com',
             'commercial_registration_no' => '011',
             'open_time' => '8am',
             'close_time' => '10pm',
@@ -217,6 +241,33 @@ class ResturantTest extends TestCase
         $this->assertDatabaseHas('banks', [
             'name' => 'Bank Of Khartoum',
             'iban' => '149554',
+        ]);
+    }
+
+    /** @test */
+    public function client_can_get_all_resturants_basic_info()
+    {
+        $client = $this->clientApiLogin();
+
+        Resturant::factory(2)->create([
+            'client_id' => $client->id,
+        ]);
+
+        $response = $this->get('/api/client/resturants/basic/info/'. $client->id);
+        $response->assertOk();
+        $response->assertJsonStructure([
+            'data' => [
+                '*' => [
+                    'id',
+                    'name_ar',
+                    'name_en',
+                    'manager_name',
+                    'manager_phone',
+                    'email',
+                    'commercial_registration_no',
+                    'client_id',
+                ]
+            ]
         ]);
     }
 

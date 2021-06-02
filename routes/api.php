@@ -45,6 +45,7 @@ Route::prefix('/client')->middleware(['auth:sanctum', 'type.client'])->group(fun
     Route::apiResource('resturantservices', ResturantServiceController::class)->parameter('resturantservices', 'resturantService');
     Route::apiResource('resturants', ResturantController::class);
     Route::post('resturants/basic/info', [ResturantController::class, 'storeBasicInformation']);
+    Route::get('resturants/basic/info/{client}', [ResturantController::class, 'getBasicInformation']);
     Route::apiResource('categories', CategoryController::class);
     Route::apiResource('subcategories', SubcategoryController::class);
     Route::apiResource('classifications', ClassificationController::class);

@@ -20,7 +20,6 @@ class ClientAuthController extends Controller
 
         $client = Client::create([
             'name' => $data['name'],
-            // 'email' => $data['email'],
             'phone' => $data['phone'],
             'country' => $data['country'],
             'job' => $data['job'],

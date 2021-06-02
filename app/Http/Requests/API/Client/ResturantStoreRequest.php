@@ -39,6 +39,10 @@ class ResturantStoreRequest extends FormRequest
     {
         return [
             'name_ar' => 'required',
+            'name_en' => 'sometimes',
+            'manager_name' => 'required',
+            'manager_phone' => 'required',
+            'email' => 'required',
             'commercial_registration_no' => 'required',
             'open_time' => 'required',
             'close_time' => 'required',
@@ -61,8 +65,10 @@ class ResturantStoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'الأسم مطلوب',
             'name_ar.required' => 'أسم المطعم مطلوب',
+            'manager_name.required' => 'أسم المدير المسؤل مطلوب',
+            'manager_phone.required' => 'رقم جوال المدير المسؤل مطلوب',
+            'email.required' => 'البريد الألكتروني مطلوب',
             'commercial_registration_no.required' => 'رقم السجل التجاري مطلوب',
             'open_time.required' => 'زمن الأفتتاح مطلوب',
             'close_time.required' => 'زمن الأغلاق مطلوب',

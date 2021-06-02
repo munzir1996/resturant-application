@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\API\Client\ResturantStoreBasicInformationRequest;
 use App\Http\Requests\API\Client\ResturantStoreRequest;
 use App\Http\Requests\API\Client\ResturantUpdateRequest;
+use App\Http\Resources\Client\ResturantBasicInfoCollection;
 use App\Http\Resources\Client\ResturantCollection;
 use App\Http\Resources\Client\ResturantResource;
+use App\Models\Client;
 use App\Models\Resturant;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -38,6 +40,10 @@ class ResturantController extends Controller
 
         $resturant = Resturant::create([
             'name_ar' => $data['name_ar'],
+            'name_en' => $data['name_en'],
+            'manager_name' => $data['manager_name'],
+            'manager_phone' => $data['manager_phone'],
+            'email' => $data['email'],
             'commercial_registration_no' => $data['commercial_registration_no'],
             'open_time' => $data['open_time'],
             'close_time' => $data['close_time'],
@@ -85,6 +91,10 @@ class ResturantController extends Controller
 
         $resturant->update([
             'name_ar' => $data['name_ar'],
+            'name_en' => $data['name_en'],
+            'manager_name' => $data['manager_name'],
+            'manager_phone' => $data['manager_phone'],
+            'email' => $data['email'],
             'commercial_registration_no' => $data['commercial_registration_no'],
             'open_time' => $data['open_time'],
             'close_time' => $data['close_time'],
@@ -144,11 +154,9 @@ class ResturantController extends Controller
         return response()->json('Resturant Basic Info Created', Response::HTTP_CREATED);
     }
 
-    public function getBasicInformation()
+    public function getBasicInformation(Client $client)
     {
-        Resturant::all();
-
-        return 1;
+        return new ResturantBasicInfoCollection($client->resturants);
     }
 
 }

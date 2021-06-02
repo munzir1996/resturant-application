@@ -17,7 +17,6 @@ class ClientAuthTest extends TestCase
         $this->withoutExceptionHandling();
         $response = $this->post('api/client/register', [
             'name' => 'name',
-            // 'email' => 'client@client.com',
             'phone' => '0114949901',
             'country' => 'sudan',
             'job' => Client::RESTAURANT_OWNER,
@@ -29,7 +28,6 @@ class ClientAuthTest extends TestCase
         $response->assertCreated();
         $this->assertDatabaseHas('clients', [
             'name' => 'name',
-            // 'email' => 'client@client.com',
             'phone' => '0114949901',
             'country' => 'sudan',
             'job' => Client::RESTAURANT_OWNER,
@@ -45,7 +43,6 @@ class ClientAuthTest extends TestCase
 
         $client = Client::factory()->verified()->create([
             'name' => 'test',
-            'email' => 'test@test.com',
             'phone' => '0123456789',
         ]);
 
@@ -54,7 +51,6 @@ class ClientAuthTest extends TestCase
         $response = $this->put('api/client/profile', [
             'id' => $client->id,
             'name' => 'jane doe',
-            'email' => 'test@test.com',
             'phone' => '0123456789',
             'country' => 'sudan',
             'job' => Client::RESTAURANT_OWNER,
@@ -64,7 +60,6 @@ class ClientAuthTest extends TestCase
         $response->assertOk();
         $this->assertDatabaseHas('clients', [
             'name' => 'jane doe',
-            'email' => 'test@test.com',
             'phone' => '0123456789',
             'country' => 'sudan',
             'job' => Client::RESTAURANT_OWNER,
@@ -78,13 +73,13 @@ class ClientAuthTest extends TestCase
         $this->withoutExceptionHandling();
 
         $client = Client::factory()->create([
-            'email' => 'client@client.com',
+            'phone' => '0114949901',
         ]);
 
         $this->clientApiLogin($client);
 
         $response = $this->post('api/client/login', [
-            'identity' => 'client@client.com',
+            'identity' => '0114949901',
             'password' => 'password',
         ]);
         $response->assertOk();
