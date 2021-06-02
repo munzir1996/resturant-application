@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\CLient;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\Client\ResturantStoreBasicInformationRequest;
 use App\Http\Requests\API\Client\ResturantStoreRequest;
 use App\Http\Requests\API\Client\ResturantUpdateRequest;
 use App\Http\Resources\Client\ResturantCollection;
@@ -105,7 +106,6 @@ class ResturantController extends Controller
         ]);
 
         return response()->json('Resturant Created', Response::HTTP_OK);
-
     }
 
     /**
@@ -120,4 +120,35 @@ class ResturantController extends Controller
 
         return response()->json('Resturant Deleted', Response::HTTP_OK);
     }
+
+    public function storeBasicInformation(ResturantStoreBasicInformationRequest $request)
+    {
+        $request->validated();
+
+        $data = $request->validated();
+
+        $resturant = Resturant::create([
+            'name_ar' => $data['name_ar'],
+            'name_en' => $data['name_en'],
+            'manager_name' => $data['manager_name'],
+            'manager_phone' => $data['manager_phone'],
+            'email' => $data['email'],
+            'commercial_registration_no' => $data['commercial_registration_no'],
+            'client_id' => Auth::user()->id,
+        ]);
+        $resturant->banks()->create([
+            'name' => $data['bank_name'],
+            'iban' => $data['iban'],
+        ]);
+
+        return response()->json('Resturant Basic Info Created', Response::HTTP_CREATED);
+    }
+
+    public function getBasicInformation()
+    {
+        Resturant::all();
+
+        return 1;
+    }
+
 }

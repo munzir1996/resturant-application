@@ -38,7 +38,7 @@ class ClientProfileRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => "required|email|unique:clients,email,{$this->id}",
+            // 'email' => "required|email|unique:clients,email,{$this->id}",
             'phone' => "required|min:10|unique:clients,phone,{$this->id}",
             'country' => 'required',
             'job' => 'required',
@@ -56,9 +56,9 @@ class ClientProfileRequest extends FormRequest
     {
         return [
             'name.required' => 'الأسم مطلوب',
-            'email.required' => 'أسم المستخدم مطلوب',
-            'email.unique' => 'أسم المستخدم مستخدم بالفعل',
-            'email.email' => 'يجب ان يكون المدخل بريد ألكتروني',
+            // 'email.required' => 'أسم المستخدم مطلوب',
+            // 'email.unique' => 'أسم المستخدم مستخدم بالفعل',
+            // 'email.email' => 'يجب ان يكون المدخل بريد ألكتروني',
             'phone.required' => 'رقم الهاتف مطلوب',
             'phone.min' => 'يجب أن يكون رقم الهاتف 10 ارقام',
             'phone.unique' => 'رقم الهاتف مستخدم بالفعل',

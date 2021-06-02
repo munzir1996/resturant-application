@@ -38,7 +38,7 @@ class ClientAuthRegisterRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|email|unique:clients',
+            // 'email' => 'required|email|unique:clients',
             'phone' => 'required|min:10|unique:clients',
             'country' => 'required',
             'job' => 'required',
@@ -56,9 +56,9 @@ class ClientAuthRegisterRequest extends FormRequest
     {
         return [
             'name.required' => 'الأسم مطلوب',
-            'email.required' => 'البريد الألكتروني مطلوب',
-            'email.unique' => 'البريد الألكتروني مستخدم بالفعل',
-            'email.email' => 'يجب ان يكون المدخل بريد ألكتروني',
+            // 'email.required' => 'البريد الألكتروني مطلوب',
+            // 'email.unique' => 'البريد الألكتروني مستخدم بالفعل',
+            // 'email.email' => 'يجب ان يكون المدخل بريد ألكتروني',
             'phone.required' => 'رقم الهاتف مطلوب',
             'phone.min' => 'يجب أن يكون رقم الهاتف 10 ارقام',
             'phone.unique' => 'رقم الهاتف مستخدم بالفعل',

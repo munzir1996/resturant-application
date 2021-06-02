@@ -17,7 +17,7 @@ class ClientAuthTest extends TestCase
         $this->withoutExceptionHandling();
         $response = $this->post('api/client/register', [
             'name' => 'name',
-            'email' => 'client@client.com',
+            // 'email' => 'client@client.com',
             'phone' => '0114949901',
             'country' => 'sudan',
             'job' => Client::RESTAURANT_OWNER,
@@ -29,7 +29,7 @@ class ClientAuthTest extends TestCase
         $response->assertCreated();
         $this->assertDatabaseHas('clients', [
             'name' => 'name',
-            'email' => 'client@client.com',
+            // 'email' => 'client@client.com',
             'phone' => '0114949901',
             'country' => 'sudan',
             'job' => Client::RESTAURANT_OWNER,

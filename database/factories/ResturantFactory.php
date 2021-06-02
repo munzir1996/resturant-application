@@ -26,6 +26,10 @@ class ResturantFactory extends Factory
     {
         return [
             'name_ar' => $this->faker->name,
+            'name_en' => $this->faker->name,
+            'manager_name' => $this->faker->name,
+            'manager_phone' => $this->faker->e164PhoneNumber,
+            'email' => $this->faker->unique()->safeEmail,
             'commercial_registration_no' => Keygen::numeric(6)->generate(),
             'open_time' => '8am',
             'close_time' => '10pm',

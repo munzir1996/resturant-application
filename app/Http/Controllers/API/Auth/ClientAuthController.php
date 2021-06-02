@@ -20,7 +20,7 @@ class ClientAuthController extends Controller
 
         $client = Client::create([
             'name' => $data['name'],
-            'email' => $data['email'],
+            // 'email' => $data['email'],
             'phone' => $data['phone'],
             'country' => $data['country'],
             'job' => $data['job'],
@@ -29,7 +29,7 @@ class ClientAuthController extends Controller
         ]);
 
         return response()->json([
-            'client' => $client->only(['id', 'name', 'email', 'phone', 'country', 'job', 'identity_no']),
+            'client' => $client->only(['id', 'name', 'phone', 'country', 'job', 'identity_no']),
             'token' => $client->createToken('mobile-client', ['role:client'])->plainTextToken,
         ], Response::HTTP_CREATED);
 
@@ -45,7 +45,7 @@ class ClientAuthController extends Controller
 
         auth()->user()->update($data);
 
-        return response()->json(auth()->user()->only(['id', 'name', 'email', 'phone', 'country', 'job', 'identity_no']), Response::HTTP_OK);
+        return response()->json(auth()->user()->only(['id', 'name', 'phone', 'country', 'job', 'identity_no']), Response::HTTP_OK);
     }
 
     public function login(Request $request)
@@ -59,14 +59,14 @@ class ClientAuthController extends Controller
 
         $client = Client::where("{$field}", $request->identity)->first();
 
-        if (!$client || ! Hash::check($request->password, $client->password)) {
+        if (!$client || !Hash::check($request->password, $client->password)) {
             throw ValidationException::withMessages([
                 'identity' => ['بيانات الاعتماد المقدمة غير صحيحة.'],
             ]);
         }
 
         return response()->json([
-            'client' => $client->only(['id', 'name', 'email', 'phone']),
+            'client' => $client->only(['id', 'name', 'phone']),
             'token' => $client->createToken('mobile-client', ['role:client'])->plainTextToken,
         ], Response::HTTP_OK);
     }

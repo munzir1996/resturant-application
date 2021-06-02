@@ -189,6 +189,37 @@ class ResturantTest extends TestCase
         ]);
     }
 
+    /** @test */
+    public function client_can_create_resturant_basic_info()
+    {
+        $this->clientApiLogin();
+
+        $response = $this->post('/api/client/resturants/basic/info', [
+            'name_ar' => 'مطعم',
+            'name_en' => 'resturant',
+            'manager_name' => 'مدير',
+            'manager_phone' => '01542365874',
+            'email' => 'client@client.com',
+            'commercial_registration_no' => '1559',
+            'bank_name' => 'Bank Of Khartoum',
+            'iban' => '149554',
+        ]);
+        $response->assertCreated();
+
+        $this->assertDatabaseHas('resturants', [
+            'name_ar' => 'مطعم',
+            'name_en' => 'resturant',
+            'manager_name' => 'مدير',
+            'manager_phone' => '01542365874',
+            'email' => 'client@client.com',
+            'commercial_registration_no' => '1559',
+        ]);
+        $this->assertDatabaseHas('banks', [
+            'name' => 'Bank Of Khartoum',
+            'iban' => '149554',
+        ]);
+    }
+
 }
 
 
