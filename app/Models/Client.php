@@ -49,9 +49,6 @@ class Client extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public const RESTAURANT_OWNER = 'صاحب المطعم';
-    public const GENERAL_DIRECTOR = 'المدير العام';
-    public const AUTHORIZED = 'مفوض';
     public const YES = 'yes';
     public const NO = 'no';
 

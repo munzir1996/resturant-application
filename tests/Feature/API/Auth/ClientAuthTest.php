@@ -15,11 +15,12 @@ class ClientAuthTest extends TestCase
     public function client_can_register_a_client()
     {
         $this->withoutExceptionHandling();
+
         $response = $this->post('api/client/register', [
             'name' => 'name',
             'phone' => '0114949901',
             'country' => 'sudan',
-            'job' => Client::RESTAURANT_OWNER,
+            'job' => config('constants.roles.1'),
             'identity_no' => '114240491',
             'password' => 'password',
             'password_confirmation' => 'password',
@@ -30,7 +31,7 @@ class ClientAuthTest extends TestCase
             'name' => 'name',
             'phone' => '0114949901',
             'country' => 'sudan',
-            'job' => Client::RESTAURANT_OWNER,
+            'job' => config('constants.roles.1'),
             'identity_no' => '114240491',
         ]);
 
@@ -53,7 +54,7 @@ class ClientAuthTest extends TestCase
             'name' => 'jane doe',
             'phone' => '0123456789',
             'country' => 'sudan',
-            'job' => Client::RESTAURANT_OWNER,
+            'job' => config('constants.roles.1'),
             'identity_no' => '114240491',
         ]);
 
@@ -62,7 +63,7 @@ class ClientAuthTest extends TestCase
             'name' => 'jane doe',
             'phone' => '0123456789',
             'country' => 'sudan',
-            'job' => Client::RESTAURANT_OWNER,
+            'job' => config('constants.roles.1'),
             'identity_no' => '114240491',
         ]);
     }

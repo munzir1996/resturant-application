@@ -4,6 +4,7 @@ use App\Http\Controllers\API\Auth\ClientAuthController;
 use App\Http\Controllers\API\CLient\CategoryController;
 use App\Http\Controllers\API\CLient\CityController;
 use App\Http\Controllers\API\Client\ClassificationController;
+use App\Http\Controllers\API\Client\ClientController;
 use App\Http\Controllers\API\CLient\CountryController;
 use App\Http\Controllers\API\CLient\LanguageController;
 use App\Http\Controllers\API\Client\MealController;
@@ -35,6 +36,7 @@ Route::prefix('/client')->group(function () {
     Route::apiResource('countries', CountryController::class);
     Route::apiResource('cities', CityController::class);
     Route::apiResource('policies', PolicyController::class);
+    Route::get('roles', [ClientController::class, 'getRoles']);
 });
 
 //phone
