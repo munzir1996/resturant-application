@@ -159,6 +159,15 @@ class ResturantController extends Controller
         return new ResturantBasicInfoCollection($client->resturants);
     }
 
+    public function getServices()
+    {
+        return config('constants.restaurant_services', Response::HTTP_OK);
+    }
+
+    public function getPaymentMethods()
+    {
+        return config('constants.payment_methods', Response::HTTP_OK);
+    }
 }
 
 

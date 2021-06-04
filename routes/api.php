@@ -37,6 +37,8 @@ Route::prefix('/client')->group(function () {
     Route::apiResource('cities', CityController::class);
     Route::apiResource('policies', PolicyController::class);
     Route::get('roles', [ClientController::class, 'getRoles']);
+    Route::get('restaurant/services', [ResturantController::class, 'getServices']);
+    Route::get('restaurant/payment/methods', [ResturantController::class, 'getPaymentMethods']);
 });
 
 //phone

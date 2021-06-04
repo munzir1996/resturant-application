@@ -271,7 +271,26 @@ class ResturantTest extends TestCase
         ]);
     }
 
+    /** @test */
+    public function client_can_get_resturants_services()
+    {
+        $response = $this->get('/api/client/restaurant/services');
+        $response->assertOk();
+        $response->assertExactJson(config('constants.restaurant_services'));
+    }
+
+    /** @test */
+    public function client_can_get_accepted_payment_methods()
+    {
+        $response = $this->get('/api/client/restaurant/payment/methods');
+        $response->assertOk();
+        $response->assertExactJson(config('constants.payment_methods'));
+    }
+
 }
+
+
+
 
 
 
