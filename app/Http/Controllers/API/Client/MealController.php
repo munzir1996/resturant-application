@@ -35,15 +35,20 @@ class MealController extends Controller
     {
         $request->validated();
 
-        Meal::create([
+        $meal = Meal::create([
             'name' => $request->name,
             'classification_id' => $request->classification_id,
-            'size' => $request->size,
+            'size' => config('constants.meal_sizes.'.$request->size),
             'calorie' => $request->calorie,
             'detail' => $request->detail,
             'price' => $request->price,
-            'additions' => $request->additions,
+            'tax' => $request->tax,
+            'points' => $request->points,
         ]);
+
+        if ($request->has('meal_addons')) {
+            $meal->storeMealAddons($request->meal_addons);
+        }
 
         return response()->json('Meal Created', Response::HTTP_CREATED);
     }
@@ -73,12 +78,14 @@ class MealController extends Controller
         $meal->update([
             'name' => $request->name,
             'classification_id' => $request->classification_id,
-            'price' => $request->price,
-            'detail' => $request->detail,
+            'size' => config('constants.meal_sizes.'.$request->size),
             'calorie' => $request->calorie,
-            'size' => $request->size,
-            'additions' => $request->additions,
+            'detail' => $request->detail,
+            'price' => $request->price,
+            'tax' => $request->tax,
+            'points' => $request->points,
         ]);
+
 
         return response()->json('Meal Updated' , Response::HTTP_OK);
     }

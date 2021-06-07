@@ -43,7 +43,9 @@ class MealStoreRequest extends FormRequest
             'detail' => 'required',
             'calorie' => 'required',
             'size' => 'required',
-            'additions' => 'required',
+            'tax' => 'required',
+            'points' => 'required',
+            'meal_addons' => 'sometimes',
         ];
     }
 
@@ -61,7 +63,8 @@ class MealStoreRequest extends FormRequest
             'detail.required' => 'التفاصيل مطلوبة',
             'calorie.required' => 'الكالوري المطلوب',
             'size.required' => 'الحجم مطلوب',
-            'additions.required' => 'الأضافات مطلوبة',
+            'tax.required' => 'الضريبة مطلوب',
+            'points.required' => 'النقاط مطلوب',
         ];
     }
 

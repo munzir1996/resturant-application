@@ -12,6 +12,45 @@ class Meal extends Model
 
     protected $guarded = [];
 
+    public function storeMealAddons($mealAddons)
+    {
+        foreach ($mealAddons as $mealAddon) {
+            MealAddon::create([
+                'name' => $mealAddon['name'],
+                'price' => $mealAddon['price'],
+                'meal_id' => $this->id,
+            ]);
+        }
+    }
+
+    public function x()
+    {
+        dd(1);
+    }
+    // public static function updateQuestion($id, $datas)
+    // {
+    //     $optionQuestionIds = [];
+
+    //     foreach ($datas as $data) {
+    //         $optionQuestion = OptionQuestion::updateOrCreate(
+    //             [
+    //                 'question' => $data['question'],
+    //                 'question_degree' => $data['question_degree'],
+    //                 'adjust_standar_id' => $id,
+    //             ],
+    //             [
+    //                 'question' => $data['question'],
+    //                 'question_degree' => $data['question_degree'],
+    //                 'adjust_standar_id' => $id,
+    //             ]
+    //         );
+    //         $optionQuestion->save();
+    //         $optionQuestionIds[] = $optionQuestion->id;
+    //     }
+
+    //     OptionQuestion::where('adjust_standar_id', $id)->whereNotIn('id', $optionQuestionIds)->delete();
+    // }
+
     /**
      * Get the classification that owns the Meal
      *
