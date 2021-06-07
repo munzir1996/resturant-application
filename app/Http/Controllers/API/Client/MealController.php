@@ -86,6 +86,7 @@ class MealController extends Controller
             'points' => $request->points,
         ]);
 
+        $meal->updateMealAddons($request->meal_addons);
 
         return response()->json('Meal Updated' , Response::HTTP_OK);
     }

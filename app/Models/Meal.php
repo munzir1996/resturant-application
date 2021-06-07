@@ -23,33 +23,30 @@ class Meal extends Model
         }
     }
 
-    public function x()
+    public function updateMealAddons($mealAddons)
     {
-        dd(1);
+        $mealAddonsIds = [];
+
+        foreach ($mealAddons as $mealAddon) {
+            $mealAddon = MealAddon::updateOrCreate(
+                [
+                    'name' => $mealAddon['name'],
+                    'price' => $mealAddon['price'],
+                    'meal_id' => $this->id,
+                ],
+                [
+                    'name' => $mealAddon['name'],
+                    'price' => $mealAddon['price'],
+                    'meal_id' => $this->id,
+                ]
+            );
+
+            $mealAddon->save();
+            $mealAddonsIds[] = $mealAddon->id;
+        }
+
+        MealAddon::where('meal_id', $this->id)->whereNotIn('id', $mealAddonsIds)->delete();
     }
-    // public static function updateQuestion($id, $datas)
-    // {
-    //     $optionQuestionIds = [];
-
-    //     foreach ($datas as $data) {
-    //         $optionQuestion = OptionQuestion::updateOrCreate(
-    //             [
-    //                 'question' => $data['question'],
-    //                 'question_degree' => $data['question_degree'],
-    //                 'adjust_standar_id' => $id,
-    //             ],
-    //             [
-    //                 'question' => $data['question'],
-    //                 'question_degree' => $data['question_degree'],
-    //                 'adjust_standar_id' => $id,
-    //             ]
-    //         );
-    //         $optionQuestion->save();
-    //         $optionQuestionIds[] = $optionQuestion->id;
-    //     }
-
-    //     OptionQuestion::where('adjust_standar_id', $id)->whereNotIn('id', $optionQuestionIds)->delete();
-    // }
 
     /**
      * Get the classification that owns the Meal
