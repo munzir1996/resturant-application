@@ -17,14 +17,10 @@ class CreateResturantLocationsTable extends Migration
             $table->id();
             $table->double('latitude');
             $table->double('longetitue');
-            $table->foreignId('country_id');
-            $table->foreignId('city_id');
             $table->foreignId('resturant_id');
             $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
-            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->foreign('resturant_id')->references('id')->on('resturants')->onDelete('cascade');
         });
     }

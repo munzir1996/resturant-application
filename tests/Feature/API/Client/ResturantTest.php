@@ -247,31 +247,53 @@ class ResturantTest extends TestCase
     /** @test */
     public function client_can_create_resturant_info()
     {
-        $this->clientApiLogin();
+        $client = $this->clientApiLogin();
+        $resturant = Resturant::factory()->create([
+            'client_id' => $client->id,
+        ]);
+        $category1 = Category::factory()->create();
+        $category2 = Category::factory()->create();
 
-        $response = $this->post('/api/client/resturants/basic/info', [
-            'name_ar' => 'مطعم',
-            'name_en' => 'resturant',
-            'manager_name' => 'مدير',
-            'manager_phone' => '01542365874',
-            'email' => 'client@client.com',
-            'commercial_registration_no' => '1559',
-            'bank_name' => 'Bank Of Khartoum',
-            'iban' => '149554',
+        $categories = [$category1->id, $category2->id];
+        $services = [1,2,3];
+        $payment_methods = [1,2];
+
+        $response = $this->post('/api/client/resturants/info/'. $resturant->id, [
+            'services' => $services,
+            'maximum_delivery_distance' => 100,
+            'neighborhood_delivery_price' => 20,
+            'outside_neighborhood_delivery_price' => 50,
+            'minimum_purchase_free_delivery_in_neighborhood' => 10,
+            'minimum_purchase_free_delivery_outside_neighborhood' => 20,
+            'open_time' => '8am',
+            'close_time' => '9pm',
+            'accepted_payment_methods' => $payment_methods,
+            'loyalty_points' => Resturant::YES,
+            'customer_earn_points' => 0,
+            'categories' => $categories,
+            'latitude' => 1554.5547,
+            'longetitue' => -54.55,
         ]);
         $response->assertCreated();
 
         $this->assertDatabaseHas('resturants', [
-            'name_ar' => 'مطعم',
-            'name_en' => 'resturant',
-            'manager_name' => 'مدير',
-            'manager_phone' => '01542365874',
-            'email' => 'client@client.com',
-            'commercial_registration_no' => '1559',
+            'maximum_delivery_distance' => 100,
+            'neighborhood_delivery_price' => 20,
+            'outside_neighborhood_delivery_price' => 50,
+            'minimum_purchase_free_delivery_in_neighborhood' => 10,
+            'minimum_purchase_free_delivery_outside_neighborhood' => 20,
+            'open_time' => '8am',
+            'close_time' => '9pm',
+            'loyalty_points' => Resturant::YES,
+            'customer_earn_points' => 0,
         ]);
-        $this->assertDatabaseHas('banks', [
-            'name' => 'Bank Of Khartoum',
-            'iban' => '149554',
+        $this->assertDatabaseHas('category_resturant', [
+            'resturant_id' => $resturant->id,
+        ]);
+        $this->assertDatabaseHas('resturant_locations', [
+            'latitude' => 1554.5547,
+            'longetitue' => -54.55,
+            'resturant_id' => $resturant->id,
         ]);
     }
 
@@ -317,6 +339,7 @@ class ResturantTest extends TestCase
         $response->assertOk();
         $response->assertExactJson(config('constants.payment_methods'));
     }
+
 
 }
 

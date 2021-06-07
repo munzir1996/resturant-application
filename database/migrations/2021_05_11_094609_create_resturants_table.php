@@ -32,7 +32,7 @@ class CreateResturantsTable extends Migration
             $table->json('accepted_payment_methods')->nullable();
             $table->string('loyalty_points')->nullable();
             $table->double('customer_earn_points')->nullable();
-            $table->foreignId('client_id');
+            $table->foreignId('client_id'); //
             $table->softDeletes();
             $table->timestamps();
 

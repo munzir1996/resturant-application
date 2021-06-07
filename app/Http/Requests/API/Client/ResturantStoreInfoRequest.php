@@ -37,14 +37,20 @@ class ResturantStoreInfoRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_ar' => 'required',
-            'name_en' => 'sometimes',
-            'manager_name' => 'required',
-            'manager_phone' => 'required',
-            'email' => 'required',
-            'commercial_registration_no' => 'required',
-            'bank_name' => 'required',
-            'iban' => 'required',
+            'services' => 'required',
+            'maximum_delivery_distance' => 'required',
+            'neighborhood_delivery_price' => 'required',
+            'outside_neighborhood_delivery_price' => 'required',
+            'minimum_purchase_free_delivery_in_neighborhood' => 'required',
+            'minimum_purchase_free_delivery_outside_neighborhood' => 'required',
+            'open_time' => 'required',
+            'close_time' => 'required',
+            'accepted_payment_methods' => 'required',
+            'loyalty_points' => 'required',
+            'customer_earn_points' => 'required',
+            'categories' => 'required',
+            'latitude' => 'required',
+            'longetitue' => 'required',
         ];
     }
 
@@ -56,13 +62,20 @@ class ResturantStoreInfoRequest extends FormRequest
     public function messages()
     {
         return [
-            'name_ar.required' => 'أسم المطعم مطلوب',
-            'manager_name.required' => 'أسم المدير المسؤل مطلوب',
-            'manager_phone.required' => 'رقم جوال المدير المسؤل مطلوب',
-            'email.required' => 'البريد الألكتروني مطلوب',
-            'commercial_registration_no.required' => 'رقم السجل التجاري مطلوب',
-            'bank_name.required' => 'أسم البنك مطلوب',
-            'iban.required' => 'رقم الأيبان مطلوب',
+            'services.required' => 'يجب أختيار خدمات المطعم',
+            'maximum_delivery_distance.required' => 'أقصى مسافة لخدمة التوصيل مطلوب',
+            'neighborhood_delivery_price.required' => 'سعر التوصيل في نطاق الحي مطلوب',
+            'outside_neighborhood_delivery_price.required' => 'سعر التوصيل خارج نطاق الحي مطلوب',
+            'minimum_purchase_free_delivery_in_neighborhood.required' => 'في نطاق الحي مطلوب',
+            'minimum_purchase_free_delivery_outside_neighborhood.required' => 'خارج نطاق الحي مطلوب',
+            'open_time.required' => 'زمن بدء العمل مطلوب',
+            'close_time.required' => 'زمن انتهاء العمل مطلوب',
+            'accepted_payment_methods.required' => 'يجب اختيار خدمات الدفع',
+            'loyalty_points.required' => 'الاشتراك في برنامج نقاط الولاء للعملاء مطلوب',
+            'customer_earn_points.required' => 'عدد النقاط مطلوب',
+            'categories.required' => 'أختيار تصنيف المطعم',
+            'latitude.required' => 'خطوط الطول مطلوبة',
+            'longetitue.required' => 'خطوط العرض مطلوبة',
         ];
     }
 }

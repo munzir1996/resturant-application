@@ -11,7 +11,7 @@ class Resturant extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = [];
-    protected $with = ['client', 'category', 'resturantLocation', 'banks'];
+    protected $with = ['client', 'categories', 'resturantLocation', 'banks'];
     protected $casts = [
         'services' => 'array',
         'accepted_payment_methods' => 'array',

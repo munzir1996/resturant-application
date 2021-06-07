@@ -13,26 +13,6 @@ class ResturantLocation extends Model
     protected $guarded = [];
 
     /**
-     * Get the country that owns the ResturantLocation
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function country()
-    {
-        return $this->belongsTo(Country::class);
-    }
-
-    /**
-     * Get the city that owns the ResturantLocation
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function city()
-    {
-        return $this->belongsTo(City::class);
-    }
-
-    /**
      * Get the resturant that owns the ResturantLocation
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

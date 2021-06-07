@@ -27,8 +27,6 @@ class ResturantLocationFactory extends Factory
         return [
             'latitude' => $this->faker->latitude,
             'longetitue' => $this->faker->longitude,
-            'country_id' => Country::factory()->create()->id,
-            'city_id' => City::factory()->create()->id,
             'resturant_id' => Resturant::factory()->create()->id,
         ];
     }

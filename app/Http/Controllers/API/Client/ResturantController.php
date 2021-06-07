@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\CLient;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\Client\ResturantStoreBasicInfoRequest;
+use App\Http\Requests\API\Client\ResturantStoreInfoRequest;
 use App\Http\Requests\API\Client\ResturantStoreRequest;
 use App\Http\Requests\API\Client\ResturantUpdateRequest;
 use App\Http\Resources\Client\ResturantBasicInfoCollection;
@@ -55,8 +56,6 @@ class ResturantController extends Controller
         $resturant->resturantLocation()->create([
             'latitude' => $data['latitude'],
             'longetitue' => $data['longetitue'],
-            'country_id' => $data['country_id'],
-            'city_id' => $data['city_id'],
         ]);
 
         $resturant->banks()->create([
@@ -106,8 +105,6 @@ class ResturantController extends Controller
         $resturant->resturantLocation()->update([
             'latitude' => $data['latitude'],
             'longetitue' => $data['longetitue'],
-            'country_id' => $data['country_id'],
-            'city_id' => $data['city_id'],
         ]);
 
         $resturant->banks()->update([
@@ -154,9 +151,29 @@ class ResturantController extends Controller
         return response()->json('Resturant Basic Info Created', Response::HTTP_CREATED);
     }
 
-    public function storeResturantInfo()
+    public function storeResturantInfo(ResturantStoreInfoRequest $request, Resturant $resturant)
     {
+        $request->validated();
+        $resturant->update([
+            'services' => $request->services,
+            'maximum_delivery_distance' => $request->maximum_delivery_distance,
+            'neighborhood_delivery_price' => $request->neighborhood_delivery_price,
+            'outside_neighborhood_delivery_price' => $request->outside_neighborhood_delivery_price,
+            'minimum_purchase_free_delivery_in_neighborhood' => $request->minimum_purchase_free_delivery_in_neighborhood,
+            'minimum_purchase_free_delivery_outside_neighborhood' => $request->minimum_purchase_free_delivery_outside_neighborhood,
+            'open_time' => $request->open_time,
+            'close_time' => $request->close_time,
+            'accepted_payment_methods' => $request->accepted_payment_methods,
+            'loyalty_points' => $request->loyalty_points,
+            'customer_earn_points' => $request->customer_earn_points,
+        ]);
+        $resturant->categories()->sync($request->categories);
+        $resturant->resturantLocation()->create([
+            'latitude' => $request->latitude,
+            'longetitue' => $request->longetitue,
+        ]);
 
+        return response()->json('Resturant Info Created', Response::HTTP_CREATED);
     }
 
     public function getBasicInformation(Client $client)
