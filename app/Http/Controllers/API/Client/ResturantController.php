@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API\CLient;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\Client\ResturantStoreBasicInformationRequest;
+use App\Http\Requests\API\Client\ResturantStoreBasicInfoRequest;
 use App\Http\Requests\API\Client\ResturantStoreRequest;
 use App\Http\Requests\API\Client\ResturantUpdateRequest;
 use App\Http\Resources\Client\ResturantBasicInfoCollection;
@@ -131,7 +131,7 @@ class ResturantController extends Controller
         return response()->json('Resturant Deleted', Response::HTTP_OK);
     }
 
-    public function storeBasicInformation(ResturantStoreBasicInformationRequest $request)
+    public function storeBasicInfo(ResturantStoreBasicInfoRequest $request)
     {
         $request->validated();
 
@@ -152,6 +152,11 @@ class ResturantController extends Controller
         ]);
 
         return response()->json('Resturant Basic Info Created', Response::HTTP_CREATED);
+    }
+
+    public function storeResturantInfo()
+    {
+
     }
 
     public function getBasicInformation(Client $client)

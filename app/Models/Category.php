@@ -24,13 +24,16 @@ class Category extends Model
     }
 
     /**
-     * Get all of the resturants for the Client
+     * The resturants that belong to the Category
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function resturants()
     {
-        return $this->hasMany(Resturant::class);
+        return $this->belongsToMany(Resturant::class);
     }
 
+
 }
+
+

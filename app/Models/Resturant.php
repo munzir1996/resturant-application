@@ -12,7 +12,10 @@ class Resturant extends Model
 
     protected $guarded = [];
     protected $with = ['client', 'category', 'resturantLocation', 'banks'];
-
+    protected $casts = [
+        'services' => 'array',
+        'accepted_payment_methods' => 'array',
+    ];
     public const YES = 'yes';
     public const NO = 'no';
 
@@ -31,10 +34,6 @@ class Resturant extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
 
     /**
      * Get the resturantLocation associated with the Resturant
@@ -74,6 +73,16 @@ class Resturant extends Model
     public function classification()
     {
         return $this->hasMany(Classification::class);
+    }
+
+    /**
+     * The categories that belong to the Resturant
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
     }
 
 }

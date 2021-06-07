@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'client@client.com',
             'phone' => '0555555555',
             'country' => 'Saudi Arabia',
-            'job' => Client::RESTAURANT_OWNER,
+            'job' => config('constants.roles.1'),
             'identity_no' => '111',
             // $table->string('')->default(Client::NO);
             'email_verified_at' => now(),

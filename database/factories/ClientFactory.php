@@ -28,7 +28,7 @@ class ClientFactory extends Factory
             // 'email' => $this->faker->unique()->safeEmail,
             'phone' => $this->faker->e164PhoneNumber,
             'country' => $this->faker->country,
-            'job' => Client::RESTAURANT_OWNER,
+            'job' => config('constants.roles.1'),
             'identity_no' => $this->faker->randomNumber,
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
