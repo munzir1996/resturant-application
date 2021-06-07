@@ -112,6 +112,17 @@ class MealTest extends TestCase
     {
         $this->clientApiLogin();
 
+        $mealAddons = [
+            [
+                'name' => 'addon1',
+                'price' => 10,
+            ],
+            [
+                'name' => 'addon2',
+                'price' => 20,
+            ],
+        ];
+
         $meal = Meal::factory()->create();
         $classification = Classification::factory()->create();
 
@@ -124,6 +135,7 @@ class MealTest extends TestCase
             'size' => 1,
             'tax' => 10,
             'points' => 1,
+            'meal_addons' => $mealAddons,
         ]);
         $response->assertOk();
 
@@ -136,6 +148,10 @@ class MealTest extends TestCase
             'size' => config('constants.meal_sizes.1'),
             'tax' => 10,
             'points' => 1,
+        ]);
+        $this->assertDatabaseHas('meal_addons', [
+            'name' => 'addon2',
+            'price' => 20,
         ]);
     }
 

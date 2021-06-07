@@ -26,26 +26,29 @@ class Meal extends Model
     public function updateMealAddons($mealAddons)
     {
         $mealAddonsIds = [];
+        if (!empty($mealAddons)) {
+            foreach ($mealAddons as $mealAddon) {
+                $mealAddon = MealAddon::updateOrCreate(
+                    [
+                        'name' => $mealAddon['name'],
+                        'price' => $mealAddon['price'],
+                        'meal_id' => $this->id,
+                    ],
+                    [
+                        'name' => $mealAddon['name'],
+                        'price' => $mealAddon['price'],
+                        'meal_id' => $this->id,
+                    ]
+                );
 
-        foreach ($mealAddons as $mealAddon) {
-            $mealAddon = MealAddon::updateOrCreate(
-                [
-                    'name' => $mealAddon['name'],
-                    'price' => $mealAddon['price'],
-                    'meal_id' => $this->id,
-                ],
-                [
-                    'name' => $mealAddon['name'],
-                    'price' => $mealAddon['price'],
-                    'meal_id' => $this->id,
-                ]
-            );
+                $mealAddon->save();
+                $mealAddonsIds[] = $mealAddon->id;
+            }
 
-            $mealAddon->save();
-            $mealAddonsIds[] = $mealAddon->id;
+            MealAddon::where('meal_id', $this->id)->whereNotIn('id', $mealAddonsIds)->delete();
+        } else {
+            $this->mealAddons()->delete();
         }
-
-        MealAddon::where('meal_id', $this->id)->whereNotIn('id', $mealAddonsIds)->delete();
     }
 
     /**
