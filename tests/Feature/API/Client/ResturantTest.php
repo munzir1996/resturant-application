@@ -325,6 +325,43 @@ class ResturantTest extends TestCase
     }
 
     /** @test */
+    public function client_can_get_all_resturants_info()
+    {
+        $client = $this->clientApiLogin();
+
+        $resturant = Resturant::factory()->create([
+            'client_id' => $client->id,
+        ]);
+        ResturantLocation::factory()->create([
+            'resturant_id' => $resturant->id,
+        ]);
+
+        $response = $this->get('/api/client/resturants/info/'. $client->id);
+        $response->assertOk();
+        $response->assertJsonStructure([
+            'data' => [
+                '*' => [
+                    'id',
+                    'services',
+                    'maximum_delivery_distance',
+                    'neighborhood_delivery_price',
+                    'outside_neighborhood_delivery_price',
+                    'minimum_purchase_free_delivery_in_neighborhood',
+                    'minimum_purchase_free_delivery_outside_neighborhood',
+                    'open_time',
+                    'close_time',
+                    'accepted_payment_methods',
+                    'loyalty_points',
+                    'customer_earn_points',
+                    'latitude',
+                    'longetitue',
+                    'categories',
+                ]
+            ]
+        ]);
+    }
+
+    /** @test */
     public function client_can_get_resturants_services()
     {
         $response = $this->get('/api/client/restaurant/services');

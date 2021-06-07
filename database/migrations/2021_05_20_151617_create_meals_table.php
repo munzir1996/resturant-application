@@ -17,11 +17,12 @@ class CreateMealsTable extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('classification_id');
-            $table->double('price');
-            $table->text('detail');
-            $table->double('calorie');
             $table->string('size');
-            $table->text('additions');
+            $table->double('calorie');
+            $table->text('detail');
+            $table->double('price');
+            $table->double('tax');
+            $table->double('points');
             $table->softDeletes();
             $table->timestamps();
 

@@ -38,10 +38,10 @@ class MealController extends Controller
         Meal::create([
             'name' => $request->name,
             'classification_id' => $request->classification_id,
-            'price' => $request->price,
-            'detail' => $request->detail,
-            'calorie' => $request->calorie,
             'size' => $request->size,
+            'calorie' => $request->calorie,
+            'detail' => $request->detail,
+            'price' => $request->price,
             'additions' => $request->additions,
         ]);
 
@@ -94,5 +94,6 @@ class MealController extends Controller
         $meal->delete();
 
         return response()->json('Meal Deleted', Response::HTTP_OK);
+
     }
 }

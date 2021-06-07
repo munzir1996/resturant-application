@@ -29,7 +29,8 @@ class MealFactory extends Factory
             'detail' => $this->faker->paragraph($nbSentences = 3, $variableNbSentences = true),
             'calorie' => $this->faker->numberBetween($min = 1, $max = 100),
             'size' => $this->faker->name,
-            'additions' => $this->faker->paragraph($nbSentences = 3, $variableNbSentences = true),
+            'tax' => $this->faker->numberBetween($min = 1, $max = 100),
+            'points' => $this->faker->numberBetween($min = 1, $max = 100),
         ];
     }
 }

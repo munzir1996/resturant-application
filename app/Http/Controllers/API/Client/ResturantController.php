@@ -9,6 +9,7 @@ use App\Http\Requests\API\Client\ResturantStoreRequest;
 use App\Http\Requests\API\Client\ResturantUpdateRequest;
 use App\Http\Resources\Client\ResturantBasicInfoCollection;
 use App\Http\Resources\Client\ResturantCollection;
+use App\Http\Resources\Client\ResturantInfoCollection;
 use App\Http\Resources\Client\ResturantResource;
 use App\Models\Client;
 use App\Models\Resturant;
@@ -179,6 +180,11 @@ class ResturantController extends Controller
     public function getBasicInformation(Client $client)
     {
         return new ResturantBasicInfoCollection($client->resturants);
+    }
+
+    public function getResturantInfo(Client $client)
+    {
+        return new ResturantInfoCollection($client->resturants);
     }
 
     public function getServices()

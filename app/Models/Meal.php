@@ -21,4 +21,14 @@ class Meal extends Model
     {
         return $this->belongsTo(Classification::class);
     }
+
+    /**
+     * Get all of the mealAddons for the Meal
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function mealAddons()
+    {
+        return $this->hasMany(MealAddon::class);
+    }
 }

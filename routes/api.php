@@ -50,6 +50,7 @@ Route::prefix('/client')->middleware(['auth:sanctum', 'type.client'])->group(fun
     Route::apiResource('resturants', ResturantController::class);
     Route::get('resturants/basic/info/{client}', [ResturantController::class, 'getBasicInformation']);
     Route::post('resturants/basic/info', [ResturantController::class, 'storeBasicInfo']);
+    Route::get('resturants/info/{client}', [ResturantController::class, 'getResturantInfo']);
     Route::post('resturants/info/{resturant}', [ResturantController::class, 'storeResturantInfo']);
     Route::apiResource('categories', CategoryController::class);
     Route::apiResource('subcategories', SubcategoryController::class);
