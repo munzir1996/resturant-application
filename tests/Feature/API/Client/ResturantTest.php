@@ -40,9 +40,7 @@ class ResturantTest extends TestCase
                     'commercial_registration_no',
                     'open_time',
                     'close_time',
-                    'delivery',
                     'client',
-                    'category',
                     'resturant_location',
                     'banks',
                 ]
@@ -74,9 +72,7 @@ class ResturantTest extends TestCase
                 'commercial_registration_no',
                 'open_time',
                 'close_time',
-                'delivery',
                 'client',
-                'category',
                 'resturant_location',
                 'banks',
             ]
@@ -89,9 +85,6 @@ class ResturantTest extends TestCase
         $this->withoutExceptionHandling();
         $this->clientApiLogin();
 
-        $city = City::factory()->create();
-        $category = Category::factory()->create();
-
         $response = $this->post('api/client/resturants', [
             'name_ar' => 'مطعم',
             'name_en' => 'resturant',
@@ -101,12 +94,8 @@ class ResturantTest extends TestCase
             'commercial_registration_no' => '011',
             'open_time' => '8am',
             'close_time' => '10pm',
-            'delivery' => Resturant::NO,
-            'category_id' => $category->id,
             'latitude' => 1554.5547,
             'longetitue' => -54.55,
-            'country_id' => $city->country->id,
-            'city_id' => $city->id,
             'bank_name' => 'BOK',
             'iban' => 14240,
         ]);
@@ -121,14 +110,10 @@ class ResturantTest extends TestCase
             'commercial_registration_no' => '011',
             'open_time' => '8am',
             'close_time' => '10pm',
-            'delivery' => Resturant::NO,
-            'category_id' => $category->id,
         ]);
         $this->assertDatabaseHas('resturant_locations', [
             'latitude' => 1554.5547,
             'longetitue' => -54.55,
-            'country_id' => $city->country->id,
-            'city_id' => $city->id,
         ]);
         $this->assertDatabaseHas('banks', [
             'name' => 'BOK',
@@ -143,8 +128,6 @@ class ResturantTest extends TestCase
 
         $this->clientApiLogin();
 
-        $city = City::factory()->create();
-        $category = Category::factory()->create();
         $resturant = Resturant::factory()->create();
         ResturantLocation::factory()->create([
             'resturant_id' => $resturant->id,
@@ -162,12 +145,8 @@ class ResturantTest extends TestCase
             'commercial_registration_no' => '011',
             'open_time' => '8am',
             'close_time' => '10pm',
-            'delivery' => Resturant::NO,
-            'category_id' => $category->id,
             'latitude' => 1554.5547,
             'longetitue' => -54.55,
-            'country_id' => $city->country->id,
-            'city_id' => $city->id,
             'bank_name' => 'BOK',
             'iban' => 14240,
         ]);
@@ -182,14 +161,10 @@ class ResturantTest extends TestCase
             'commercial_registration_no' => '011',
             'open_time' => '8am',
             'close_time' => '10pm',
-            'delivery' => Resturant::NO,
-            'category_id' => $category->id,
         ]);
         $this->assertDatabaseHas('resturant_locations', [
             'latitude' => 1554.5547,
             'longetitue' => -54.55,
-            'country_id' => $city->country->id,
-            'city_id' => $city->id,
         ]);
         $this->assertDatabaseHas('banks', [
             'name' => 'BOK',

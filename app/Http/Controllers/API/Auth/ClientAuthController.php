@@ -22,7 +22,7 @@ class ClientAuthController extends Controller
             'name' => $data['name'],
             'phone' => $data['phone'],
             'country' => $data['country'],
-            'job' => $data['job'],
+            'job' => config('constants.roles.'. $data['job']),
             'identity_no' => $data['identity_no'],
             'password' => Hash::make($data['password']),
         ]);
@@ -42,7 +42,13 @@ class ClientAuthController extends Controller
             $data['password'] = Hash::make($data['password']);
         }
 
-        auth()->user()->update($data);
+        auth()->user()->update([
+            'name' => $data['name'],
+            'phone' => $data['phone'],
+            'country' => $data['country'],
+            'job' => config('constants.roles.'. $data['job']),
+            'identity_no' => $data['identity_no'],
+        ]);
 
         return response()->json(auth()->user()->only(['id', 'name', 'phone', 'country', 'job', 'identity_no']), Response::HTTP_OK);
     }

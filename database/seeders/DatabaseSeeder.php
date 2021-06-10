@@ -44,7 +44,6 @@ class DatabaseSeeder extends Seeder
         ]);
         $resturant = Resturant::factory()->create([
             'client_id' => $client->id,
-            'category_id' => Category::factory()->create()->id,
         ]);
         ResturantService::factory(5)->create([
             'resturant_id' => $resturant->id,
@@ -60,7 +59,6 @@ class DatabaseSeeder extends Seeder
         ]);
         $city = City::factory()->create();
         ResturantLocation::factory()->create([
-            'country_id' => $city->country->id,
             'resturant_id' => $resturant->id,
         ]);
         Policy::factory()->create();

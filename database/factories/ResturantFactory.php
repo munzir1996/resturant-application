@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Category;
 use App\Models\Client;
 use App\Models\Resturant;
 use Illuminate\Database\Eloquent\Factories\Factory;

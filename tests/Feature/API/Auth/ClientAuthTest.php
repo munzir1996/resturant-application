@@ -20,7 +20,7 @@ class ClientAuthTest extends TestCase
             'name' => 'name',
             'phone' => '0114949901',
             'country' => 'sudan',
-            'job' => config('constants.roles.1'),
+            'job' => 1,
             'identity_no' => '114240491',
             'password' => 'password',
             'password_confirmation' => 'password',
@@ -54,7 +54,7 @@ class ClientAuthTest extends TestCase
             'name' => 'jane doe',
             'phone' => '0123456789',
             'country' => 'sudan',
-            'job' => config('constants.roles.1'),
+            'job' => 1,
             'identity_no' => '114240491',
         ]);
 

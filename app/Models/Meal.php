@@ -11,6 +11,7 @@ class Meal extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = [];
+    protected $with = ['mealAddons'];
 
     public function storeMealAddons($mealAddons)
     {

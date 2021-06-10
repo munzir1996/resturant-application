@@ -49,8 +49,6 @@ class ResturantController extends Controller
             'commercial_registration_no' => $data['commercial_registration_no'],
             'open_time' => $data['open_time'],
             'close_time' => $data['close_time'],
-            'delivery' => $data['delivery'],
-            'category_id' => $data['category_id'],
             'client_id' => Auth::user()->id,
         ]);
 
@@ -98,8 +96,6 @@ class ResturantController extends Controller
             'commercial_registration_no' => $data['commercial_registration_no'],
             'open_time' => $data['open_time'],
             'close_time' => $data['close_time'],
-            'delivery' => $data['delivery'],
-            'category_id' => $data['category_id'],
             'client_id' => Auth::user()->id,
         ]);
 

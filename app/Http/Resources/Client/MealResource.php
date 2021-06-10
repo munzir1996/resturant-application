@@ -22,7 +22,7 @@ class MealResource extends JsonResource
             'detail' => $this->detail,
             'calorie' => $this->calorie,
             'size' => $this->size,
-            'additions' => $this->additions,
+            'meal_addons' => $this->whenLoaded('mealAddons'),
         ];
     }
 }
